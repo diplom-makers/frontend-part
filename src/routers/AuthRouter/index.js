@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Redirect, Switch, Route, useRouteMatch } from 'react-router-dom'
 
+import { withAuthLayout } from 'hocs'
 import { SignInPage, SignUpPage } from 'pages/auth'
 
 // import { Typography } from '@material-ui/core'
@@ -13,7 +14,7 @@ function AuthRouter(props) {
 
   return (
     <Switch>
-      <Route path={`${path}/sign_up`} exact>
+      <Route path={`${path}/sign_up`}>
         <SignUpPage />
       </Route>
 
@@ -33,4 +34,4 @@ function AuthRouter(props) {
 }
 
 AuthRouter.defaultProps = defaultProps
-export default AuthRouter
+export default withAuthLayout(AuthRouter)

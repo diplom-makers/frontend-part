@@ -2,12 +2,12 @@ import React from 'react'
 
 // import { Typography } from '@material-ui/core'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 // import PropTypes from 'prop-types'
 import { useForm } from 'react-hook-form'
 
-import FormInput from 'components/forms/adapters/FormInput'
+import { FormInput, SubmitButton } from 'components/forms/adapters'
 import { signInValidationSchema } from 'utils/validationSchemas'
 
 const propTypes = {}
@@ -24,7 +24,7 @@ function SignInForm(props) {
   return (
     <div className={classes.container}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={3}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <FormInput
               label="Email"
@@ -51,14 +51,7 @@ function SignInForm(props) {
             justify="center"
             alignItems="center"
           >
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              size="large"
-            >
-              Primary
-            </Button>
+            <SubmitButton />
           </Grid>
         </Grid>
       </form>

@@ -1,8 +1,9 @@
 import React from 'react'
 
-// import { Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 import { SignInForm } from 'components/forms'
 
@@ -14,9 +15,30 @@ function SignInPage(props) {
 
   return (
     <div className={classes.container}>
-      <span>SignInPage</span>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <Typography variant="h4" gutterBottom align="center">
+            Авторизация
+          </Typography>
+        </Grid>
 
-      <SignInForm />
+        <Grid item xs={12}>
+          <SignInForm />
+        </Grid>
+
+        <Grid
+          item
+          xs={12}
+          container
+          direction="row"
+          justify="flex-end"
+          alignItems="center"
+        >
+          <Typography variant="subtitle1">
+            <Link to="/auth/sign_up">Еще нет аккаунта?</Link>
+          </Typography>
+        </Grid>
+      </Grid>
     </div>
   )
 }

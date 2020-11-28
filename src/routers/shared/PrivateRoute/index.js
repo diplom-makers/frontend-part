@@ -27,7 +27,7 @@ function PrivateRoute({ children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: '/auth',
+              pathname: '/auth/sign_up',
               state: { from: location },
             }}
           />

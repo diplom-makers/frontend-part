@@ -2,13 +2,12 @@ import 'fontsource-roboto'
 
 import React from 'react'
 
-import { withLayout } from 'hocs'
-import MainRouter from 'routers/MainRouter'
+import RootRouter from 'routers/RootRouter'
 
 // import withLayout from './hocs/withLayout'
 
 function App() {
-  return <MainRouter />
+  return <RootRouter />
 }
 
-export default withLayout(App)
+export default App

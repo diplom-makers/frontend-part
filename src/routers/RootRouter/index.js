@@ -2,34 +2,32 @@ import React from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { HomePage, ProfilePage } from 'pages'
+import { withLayout } from 'hocs'
 
 import AuthRouter from '../AuthRouter'
-import PrivateRoute from '../shared/PrivateRoute'
+import ConsumerRouter from '../ConsumerRouter'
+// import PrivateRoute from '../shared/PrivateRoute'
 
 // import { Typography } from '@material-ui/core'
 
 const defaultProps = {}
 
-function MainRouter(props) {
+function RootRouter(props) {
+  console.log('props :>> ', props)
   return (
     <Router>
       <Switch>
-        <PrivateRoute path="/profile">
-          <ProfilePage />
-        </PrivateRoute>
-
         <Route path="/auth">
           <AuthRouter />
         </Route>
 
         <Route path="/">
-          <HomePage />
+          <ConsumerRouter />
         </Route>
       </Switch>
     </Router>
   )
 }
 
-MainRouter.defaultProps = defaultProps
-export default MainRouter
+RootRouter.defaultProps = defaultProps
+export default RootRouter
