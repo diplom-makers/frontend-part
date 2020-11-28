@@ -4,7 +4,7 @@ import { Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { partial, pipe } from 'ramda'
 
-import { AppBar, Copyright, Drawer } from 'components'
+import { AppBar, Copyright, Drawer as ResponseDrawer } from 'components'
 
 import withTheme from '../withTheme'
 
@@ -22,7 +22,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
     <div className={classes.root}>
       <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
-          <Drawer
+          <ResponseDrawer
             container={container}
             variant="temporary"
             open={mobileDrawerIsOpen}
@@ -34,7 +34,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
         </Hidden>
 
         <Hidden xsDown implementation="css">
-          <Drawer open variant="permanent" />
+          <ResponseDrawer open variant="permanent" />
         </Hidden>
       </nav>
 
@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
   },
   page: {
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${Drawer.drawerWidth}px)`,
-      marginLeft: Drawer.drawerWidth,
+      width: `calc(100% - ${ResponseDrawer.drawerWidth}px)`,
+      marginLeft: ResponseDrawer.drawerWidth,
     },
     height: '100%',
     display: 'flex',
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
-      width: Drawer.drawerWidth,
+      width: ResponseDrawer.drawerWidth,
       flexShrink: 0,
     },
   },

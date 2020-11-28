@@ -2,25 +2,29 @@ import React from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { withLayout } from 'hocs'
 import { HomePage, ProfilePage } from 'pages'
+
+import AuthRouter from '../AuthRouter'
+import PrivateRoute from '../shared/PrivateRoute'
 
 // import { Typography } from '@material-ui/core'
 
 const defaultProps = {}
 
 function MainRouter(props) {
-  const ProfilePageWithLayout = withLayout(ProfilePage)
-  const HomePageWithLayout = withLayout(HomePage)
-
   return (
     <Router>
       <Switch>
-        <Route path="/profile">
-          <ProfilePageWithLayout />
+        <PrivateRoute path="/profile">
+          <ProfilePage />
+        </PrivateRoute>
+
+        <Route path="/auth">
+          <AuthRouter />
         </Route>
+
         <Route path="/">
-          <HomePageWithLayout />
+          <HomePage />
         </Route>
       </Switch>
     </Router>
