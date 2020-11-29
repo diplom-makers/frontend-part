@@ -2,15 +2,9 @@ import React from 'react'
 
 // import { Typography } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
-} from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
+
+import { AUTH_SIGN_IN_PATH } from 'constants/routes'
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -22,12 +16,13 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
+        // fixme auth logic
         false ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/auth/sign_up',
+              pathname: AUTH_SIGN_IN_PATH,
               state: { from: location },
             }}
           />

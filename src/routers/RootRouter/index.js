@@ -2,6 +2,7 @@ import React from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { ROOT_PATH, AUTH_PATH } from 'constants/routes'
 import { withLayout } from 'hocs'
 
 import AuthRouter from '../AuthRouter'
@@ -17,11 +18,11 @@ function RootRouter(props) {
   return (
     <Router>
       <Switch>
-        <Route path="/auth">
+        <Route path={AUTH_PATH}>
           <AuthRouter />
         </Route>
 
-        <Route path="/">
+        <Route path={ROOT_PATH}>
           <ConsumerRouter />
         </Route>
       </Switch>

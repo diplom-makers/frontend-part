@@ -1,7 +1,12 @@
 import React from 'react'
 
-import { Redirect, Switch, Route, useRouteMatch } from 'react-router-dom'
+import { Redirect, Switch, Route } from 'react-router-dom'
 
+import {
+  AUTH_PATH,
+  AUTH_SIGN_UP_PATH,
+  AUTH_SIGN_IN_PATH,
+} from 'constants/routes'
 import { withAuthLayout } from 'hocs'
 import { SignInPage, SignUpPage } from 'pages/auth'
 
@@ -10,22 +15,20 @@ import { SignInPage, SignUpPage } from 'pages/auth'
 const defaultProps = {}
 
 function AuthRouter(props) {
-  const { path } = useRouteMatch()
-
   return (
     <Switch>
-      <Route path={`${path}/sign_up`}>
-        <SignUpPage />
-      </Route>
-
-      <Route path={`${path}/sign_in`}>
+      <Route path={AUTH_SIGN_IN_PATH}>
         <SignInPage />
       </Route>
 
-      <Route path={`${path}`}>
+      <Route path={AUTH_SIGN_UP_PATH}>
+        <SignUpPage />
+      </Route>
+
+      <Route path={AUTH_PATH}>
         <Redirect
           to={{
-            pathname: '/auth/sign_in',
+            pathname: AUTH_SIGN_IN_PATH,
           }}
         />
       </Route>
