@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Hidden } from '@material-ui/core'
+import { Container, Hidden } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { partial, pipe } from 'ramda'
 
@@ -20,7 +20,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
 
   return (
     <div className={classes.root}>
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      {/* <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <ResponseDrawer
             container={container}
@@ -36,7 +36,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
         <Hidden xsDown implementation="css">
           <ResponseDrawer open variant="permanent" />
         </Hidden>
-      </nav>
+      </nav> */}
 
       <div className={classes.page}>
         <AppBar onClickMenuButton={showMobileDrawer} />
@@ -67,10 +67,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   page: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${ResponseDrawer.drawerWidth}px)`,
-      marginLeft: ResponseDrawer.drawerWidth,
-    },
+    // [theme.breakpoints.up('sm')]: {
+    //   width: `calc(100% - ${ResponseDrawer.drawerWidth}px)`,
+    //   marginLeft: ResponseDrawer.drawerWidth,
+    // },
     height: '100%',
     display: 'flex',
     flexDirection: 'column',

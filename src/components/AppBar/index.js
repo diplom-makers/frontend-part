@@ -2,7 +2,13 @@
 
 import React from 'react'
 
-import { IconButton, Hidden, Toolbar, Typography } from '@material-ui/core'
+import {
+  Container,
+  IconButton,
+  Hidden,
+  Toolbar,
+  Typography,
+} from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
@@ -23,25 +29,27 @@ function ButtonAppBar({ onClickMenuButton, ...rest }) {
 
   return (
     <AppBar position="static" {...rest} className="animated-gradient">
-      <Toolbar>
-        <Hidden smUp implementation="css">
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-            onClick={onClickMenuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Hidden>
+      <Container maxWidth="md">
+        <Toolbar>
+          <Hidden smUp implementation="css">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+              onClick={onClickMenuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
 
-        <Typography variant="h6" className={classes.title}>
-          News
-        </Typography>
+          <Typography variant="h6" className={classes.title}>
+            News
+          </Typography>
 
-        <Button color="inherit">Login</Button>
-      </Toolbar>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </Container>
     </AppBar>
   )
 }
