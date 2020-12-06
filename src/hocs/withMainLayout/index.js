@@ -20,7 +20,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
 
   return (
     <div className={classes.root}>
-      {/* <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders">
         <Hidden smUp implementation="css">
           <ResponseDrawer
             container={container}
@@ -36,7 +36,7 @@ const withMainLauoyt = (WrappedComponent) => (props) => {
         <Hidden xsDown implementation="css">
           <ResponseDrawer open variant="permanent" />
         </Hidden>
-      </nav> */}
+      </nav>
 
       <div className={classes.page}>
         <AppBar onClickMenuButton={showMobileDrawer} />
@@ -67,17 +67,18 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   page: {
-    // [theme.breakpoints.up('sm')]: {
-    //   width: `calc(100% - ${ResponseDrawer.drawerWidth}px)`,
-    //   marginLeft: ResponseDrawer.drawerWidth,
-    // },
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${ResponseDrawer.drawerWidth}px)`,
+      marginLeft: ResponseDrawer.drawerWidth,
+    },
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {

@@ -16,6 +16,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import PropTypes from 'prop-types'
 import { identity } from 'ramda'
 
+import SearchInput from './SearchInput'
+
 const propTypes = {
   onClickMenuButton: PropTypes.func,
 }
@@ -29,27 +31,25 @@ function ButtonAppBar({ onClickMenuButton, ...rest }) {
 
   return (
     <AppBar position="static" {...rest} className="animated-gradient">
-      <Container maxWidth="md">
-        <Toolbar>
-          <Hidden smUp implementation="css">
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="menu"
-              onClick={onClickMenuButton}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
+      <Toolbar>
+        <Hidden smUp implementation="css">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+            onClick={onClickMenuButton}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
 
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
+        <Typography variant="h6" className={classes.title}>
+          Poltavcev
+        </Typography>
 
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </Container>
+        <SearchInput onChange={(v) => console.log('v', v)} />
+      </Toolbar>
     </AppBar>
   )
 }
@@ -61,9 +61,14 @@ export default ButtonAppBar
 // styles
 const useStyles = makeStyles((theme) => ({
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   title: {
     flexGrow: 1,
+  },
+  toolbar: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
 }))
