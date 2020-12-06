@@ -61,7 +61,14 @@ function OfferCard({ coverImg, price, discountPrecent, name }) {
             )}
           </div>
 
-          <IconButton color="primary" aria-label="add to shopping cart">
+          <IconButton
+            color="primary"
+            aria-label="add to shopping cart"
+            onClick={(e) => {
+              e.preventDefault()
+              console.log('123')
+            }}
+          >
             <AddShoppingCartIcon />
           </IconButton>
         </div>

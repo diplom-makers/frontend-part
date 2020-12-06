@@ -1,14 +1,16 @@
 import React from 'react'
 
-import { Container, Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AndroidIcon from '@material-ui/icons/Android'
 import AppleIcon from '@material-ui/icons/Apple'
 import BlurLinearIcon from '@material-ui/icons/BlurLinear'
 import SearchIcon from '@material-ui/icons/Search'
 import { map } from 'ramda'
+import { Link } from 'react-router-dom'
 
 import { CategoryBlock, OffersBlock, OfferBlock, OfferCard } from 'components'
+import { OFFERS_PATH, OFFER_PATH } from 'constants/routes'
+import { addQeryParams, getPath } from 'utils/route'
 
 const defaultProps = {}
 
@@ -16,22 +18,22 @@ const CATEGORIES = [
   {
     icon: SearchIcon,
     title: 'Детективы',
-    key: 1,
+    id: 1,
   },
   {
     icon: AppleIcon,
     title: 'IOS литература',
-    key: 2,
+    id: 2,
   },
   {
     icon: AndroidIcon,
     title: 'Android литература',
-    key: 3,
+    id: 3,
   },
   {
     icon: BlurLinearIcon,
     title: 'Фантастика',
-    key: 4,
+    id: 4,
   },
 ]
 
@@ -42,20 +44,20 @@ const OFFERS = [
     price: 496,
     name: 'Книга 1',
     discountPrecent: 12,
-    key: 1,
+    id: 1,
   },
   {
     price: 496,
     discountPrecent: 12,
     name: 'Книга 2',
-    key: 5,
+    id: 5,
   },
   {
     coverImg:
       'https://cdn.book24.ru/v2/ITD000000000879184/COVER/cover1__w220.jpg',
     price: 496,
     name: 'Книга 3',
-    key: 2,
+    id: 2,
   },
   {
     coverImg:
@@ -63,7 +65,7 @@ const OFFERS = [
     price: 496,
     discountPrecent: 12,
     name: 'Книга 4',
-    key: 3,
+    id: 3,
   },
   {
     coverImg:
@@ -71,7 +73,7 @@ const OFFERS = [
     price: 496,
     discountPrecent: 12,
     name: 'Книга 5',
-    key: 4,
+    id: 4,
   },
 ]
 
@@ -79,21 +81,33 @@ function HomePage() {
   const classes = useStyles()
 
   const renderCategory = (category) => (
-    <div className={classes.categoryWrapper} key={category.key}>
+    <Link
+      to={addQeryParams(OFFERS_PATH, { category: category.id })}
+      className={classes.categoryWrapper}
+      key={category.id}
+    >
       <CategoryBlock icon={category.icon}>{category.title}</CategoryBlock>
-    </div>
+    </Link>
   )
 
   const renderOffer = (offer) => (
-    <div className={classes.offerWrapper} key={offer.key}>
+    <Link
+      to={getPath(OFFER_PATH, { offerId: offer.id })}
+      className={classes.offerWrapper}
+      key={offer.id}
+    >
       <OfferBlock {...offer} />
-    </div>
+    </Link>
   )
 
   const renderOfferCard = (offer) => (
-    <div className={classes.offerCardWrapper} key={offer.key}>
+    <Link
+      to={getPath(OFFER_PATH, { offerId: offer.id })}
+      className={classes.offerCardWrapper}
+      key={offer.id}
+    >
       <OfferCard {...offer} />
-    </div>
+    </Link>
   )
 
   const renderCategories = map(renderCategory)
@@ -131,14 +145,20 @@ const useStyles = makeStyles((theme) => ({
   container: {},
   categoryWrapper: {
     paddingRight: theme.spacing(1.5),
+    color: 'currentcolor',
+    textDecoration: 'none',
   },
   offerWrapper: {
     paddingRight: theme.spacing(2),
+    color: 'currentcolor',
+    textDecoration: 'none',
   },
   offerCardWrapper: {
     // paddingLeft: theme.spacing(1),
     // paddingRight: theme.spacing(1),
     paddingBottom: theme.spacing(2),
+    color: 'currentcolor',
+    textDecoration: 'none',
   },
   offersCardContaner: {
     // paddingLeft: theme.spacing(3),
@@ -146,6 +166,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
+    gridColumnGap: theme.spacing(2),
 
     [theme.breakpoints.up('sm')]: {
       gridTemplateColumns: '1fr 1fr',
