@@ -2,9 +2,10 @@ import React from 'react'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { ROOT_PATH, AUTH_PATH } from 'constants/routes'
+import { ROOT_PATH, AUTH_PATH, ADMIN_ROUTES } from 'constants/routes'
 import { withLayout } from 'hocs'
 
+import AdminRouter from '../AdminRouter'
 import AuthRouter from '../AuthRouter'
 import ConsumerRouter from '../ConsumerRouter'
 // import PrivateRoute from '../shared/PrivateRoute'
@@ -17,12 +18,12 @@ function RootRouter(props) {
   return (
     <Router>
       <Switch>
-        <Route path={AUTH_PATH}>
-          <AuthRouter />
+        <Route path={ADMIN_ROUTES.ROOT_PATH}>
+          <AdminRouter />
         </Route>
 
-        <Route path="/test">
-          <span>hello</span>
+        <Route path={AUTH_PATH}>
+          <AuthRouter />
         </Route>
 
         <Route path={ROOT_PATH}>

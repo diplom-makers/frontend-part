@@ -7,6 +7,7 @@ import OfferCard from './OfferCard'
 import OfferCartItem from './OfferCartItem'
 import OffersBlock from './OffersBlock'
 import PageTitle from './PageTitle'
+import StatisticTable from './StatisticTable'
 
 export {
   AppBar,
@@ -18,4 +19,5 @@ export {
   OfferCard,
   PageTitle,
   OfferCartItem,
+  StatisticTable,
 }

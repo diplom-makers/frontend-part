@@ -7,6 +7,7 @@ import {
   List,
   Divider,
   Drawer,
+  Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -16,12 +17,20 @@ import {
   AmpStories as AmpStoriesIcon,
   AccountCircle as AccountCircleIcon,
   ExitToApp as ExitToAppIcon,
+  Equalizer as EqualizerIcon,
+  AddBox as AddBoxIcon,
+  ImportContacts as MenuBookIcon,
 } from '@material-ui/icons'
 import PropTypes from 'prop-types'
 import { identity, pipe, tap, map } from 'ramda'
 import { Link } from 'react-router-dom'
 
-import { ROOT_PATH, PROFILE_PATH, CART_PATH } from 'constants/routes'
+import {
+  ROOT_PATH,
+  PROFILE_PATH,
+  CART_PATH,
+  ADMIN_ROUTES,
+} from 'constants/routes'
 
 const drawerWidth = 240
 
@@ -39,6 +48,20 @@ const MAIN_LINKS = [
     path: PROFILE_PATH,
     authRequired: true,
     icon: AccountCircleIcon,
+  },
+  {
+    key: 3,
+    title: 'Статистика',
+    path: ADMIN_ROUTES.OFFERS_PATH,
+    authRequired: true,
+    icon: EqualizerIcon,
+  },
+  {
+    key: 4,
+    title: 'Новый продукт',
+    path: ADMIN_ROUTES.NEW_OFFER_PATH,
+    authRequired: true,
+    icon: AddBoxIcon,
   },
 ]
 
@@ -97,7 +120,12 @@ function ResponsiveDrawer(props) {
     >
       <div className={classes.container}>
         <div>
-          <div className={classes.toolbar} />
+          <div className={classes.toolbar}>
+            <div className={classes.logoContainer}>
+              <MenuBookIcon fontSize="large" />
+              <Typography variant="h5">STORYBOOK</Typography>
+            </div>
+          </div>
           <Divider />
           <List>{renderListItems(MAIN_LINKS)}</List>
           {/* <Divider /> */}
@@ -133,5 +161,12 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: 'none',
     color: theme.palette.grey[800],
+  },
+
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    padding: '15px',
   },
 }))

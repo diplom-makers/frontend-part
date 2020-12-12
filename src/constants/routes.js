@@ -10,3 +10,9 @@ export const CART_PATH = '/cart'
 
 export const OFFERS_PATH = '/offers'
 export const OFFER_PATH = '/offer/:offerId'
+
+export const ADMIN_ROUTES = {
+  ROOT_PATH: '/admin',
+  OFFERS_PATH: '/admin/offers',
+  NEW_OFFER_PATH: '/admin/offer/new',
+}

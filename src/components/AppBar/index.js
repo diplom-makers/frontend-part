@@ -20,13 +20,15 @@ import SearchInput from './SearchInput'
 
 const propTypes = {
   onClickMenuButton: PropTypes.func,
+  children: PropTypes.node,
 }
 
 const defaultProps = {
   onClickMenuButton: identity,
+  children: <SearchInput onChange={(v) => console.log('v', v)} />,
 }
 
-function ButtonAppBar({ onClickMenuButton, ...rest }) {
+function ButtonAppBar({ onClickMenuButton, children, ...rest }) {
   const classes = useStyles()
 
   return (
@@ -48,7 +50,7 @@ function ButtonAppBar({ onClickMenuButton, ...rest }) {
           Poltavcev
         </Typography>
 
-        <SearchInput onChange={(v) => console.log('v', v)} />
+        {children}
       </Toolbar>
     </AppBar>
   )
