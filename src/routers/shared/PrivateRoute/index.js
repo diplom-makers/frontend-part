@@ -17,7 +17,7 @@ function PrivateRoute({ children, ...rest }) {
       {...rest}
       render={({ location }) =>
         // fixme auth logic
-        false ? (
+        true ? (
           children
         ) : (
           <Redirect

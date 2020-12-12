@@ -14,12 +14,15 @@ import ConsumerRouter from '../ConsumerRouter'
 const defaultProps = {}
 
 function RootRouter(props) {
-  console.log('props :>> ', props)
   return (
     <Router>
       <Switch>
         <Route path={AUTH_PATH}>
           <AuthRouter />
+        </Route>
+
+        <Route path="/test">
+          <span>hello</span>
         </Route>
 
         <Route path={ROOT_PATH}>

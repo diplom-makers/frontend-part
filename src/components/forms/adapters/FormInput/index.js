@@ -32,6 +32,7 @@ function FormInput({ errors, name, label, isRequired, ...rest }, ref) {
       inputRef={ref}
       error={pipe(getIn(name), isDefined)(errors)}
       helperText={getIn([name, 'message'], errors)}
+      InputLabelProps={{ className: classes.label }}
     />
   )
 }
@@ -44,5 +45,8 @@ export default forwardRef(FormInput)
 const useStyles = makeStyles({
   textField: {
     width: '100%',
+  },
+  label: {
+    whiteSpace: 'nowrap',
   },
 })

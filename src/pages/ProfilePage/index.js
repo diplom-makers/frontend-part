@@ -1,17 +1,30 @@
 import React from 'react'
 
-// import { Typography } from '@material-ui/core'
+import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { ProfileForm } from 'components/forms'
+
 const defaultProps = {}
+
+const profileData = {
+  email: 'maxim.romanov@mail.com',
+  passportCode: '123456789 1234',
+  firstName: 'Максим',
+  lastName: 'Романов',
+  passportDate: '12/12/2019',
+  address: 'г.Тверь ул.Пушкина д.Колотушкина 32A/2',
+}
 
 function ProfilePage() {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      <span>Profile Page</span>
-    </div>
+    <Container maxWidth="sm" className={classes.container}>
+      <div className={classes.container}>
+        <ProfileForm defaultValues={profileData} />
+      </div>
+    </Container>
   )
 }
 
@@ -20,5 +33,7 @@ export default ProfilePage
 
 // styles
 const useStyles = makeStyles({
-  container: {},
+  container: {
+    margin: 0,
+  },
 })
