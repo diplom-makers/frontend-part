@@ -7,9 +7,10 @@ import {
   PROFILE_PATH,
   OFFERS_PATH,
   OFFER_PATH,
+  CART_PATH,
 } from 'constants/routes'
 import { withLayout } from 'hocs'
-import { HomePage, ProfilePage, OffersPage, OfferPage } from 'pages'
+import { HomePage, ProfilePage, OffersPage, OfferPage, CartPage } from 'pages'
 
 import PrivateRoute from '../shared/PrivateRoute'
 
@@ -30,6 +31,10 @@ function ConsumerRouter(props) {
 
       <Route path={OFFER_PATH}>
         <OfferPage />
+      </Route>
+
+      <Route path={CART_PATH}>
+        <CartPage />
       </Route>
 
       <Route path={ROOT_PATH}>

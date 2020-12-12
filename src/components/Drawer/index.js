@@ -21,7 +21,7 @@ import PropTypes from 'prop-types'
 import { identity, pipe, tap, map } from 'ramda'
 import { Link } from 'react-router-dom'
 
-import { ROOT_PATH, PROFILE_PATH } from 'constants/routes'
+import { ROOT_PATH, PROFILE_PATH, CART_PATH } from 'constants/routes'
 
 const drawerWidth = 240
 
@@ -34,7 +34,7 @@ const MAIN_LINKS = [
     icon: AmpStoriesIcon,
   },
   {
-    key: 1,
+    key: 2,
     title: 'Профиль',
     path: PROFILE_PATH,
     authRequired: true,
@@ -44,14 +44,14 @@ const MAIN_LINKS = [
 
 const SUB_LINKS = [
   {
-    key: 1,
+    key: 10,
     title: 'Корзина',
     icon: ShoppingCartIcon,
-    path: ROOT_PATH,
+    path: CART_PATH,
     authRequired: true,
   },
   {
-    key: 1,
+    key: 11,
     title: 'Выйти',
     onClick: () => console.log('SIGN OUT'),
     authRequired: true,

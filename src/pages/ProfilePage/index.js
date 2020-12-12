@@ -3,6 +3,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+import { PageTitle } from 'components'
 import { ProfileForm } from 'components/forms'
 
 const defaultProps = {}
@@ -22,6 +23,7 @@ function ProfilePage() {
   return (
     <Container maxWidth="sm" className={classes.container}>
       <div className={classes.container}>
+        <PageTitle />
         <ProfileForm defaultValues={profileData} />
       </div>
     </Container>
