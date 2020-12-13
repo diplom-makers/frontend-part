@@ -17,17 +17,17 @@ const propTypes = {}
 const defaultProps = {}
 
 const rowSname = {
-  name: 'Наименование',
-  total: 'Доступное количество',
+  name: 'Рейс',
+  total: 'Кол-во билетов',
   sold: 'Продано',
   price: 'Цена',
 }
 
 const rows = [
-  { name: 'Книга 1', total: '140', sold: '25', price: '435р.' },
-  { name: 'Книга 2', total: '320', sold: '95', price: '496р.' },
-  { name: 'Книга 3', total: '190', sold: '15', price: '496р.' },
-  { name: 'Книга 4', total: '1270', sold: '315', price: '396р.' },
+  { name: 'Тверь M2', total: '140', sold: '25', price: '353 руб' },
+  { name: 'Кашин M3', total: '320', sold: '95', price: '353 руб' },
+  { name: 'Лыткарино M2', total: '190', sold: '15', price: '353 руб' },
+  { name: 'Пушкино B2', total: '1270', sold: '315', price: '353 руб' },
 ]
 
 function StatisticTable(props) {

@@ -59,63 +59,67 @@ function NewOfferForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={2} className={classes.container}>
-        <Grid item xs={4} className={classes.photoContainer}>
-          <div className={classes.photo}>
-            <PhotoCameraIcon fontSize="large" />
-          </div>
+        <Grid item xs={12} sm={12}>
+          <FormInput
+            label="Название"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
         </Grid>
 
-        <Grid item container xs={8} spacing={2}>
-          <Grid item xs={12} sm={12}>
-            <FormInput
-              label="Название"
-              name="password"
-              ref={register}
-              {...restForm}
-            />
-          </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormInput
+            label="Категория ТС"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
+        </Grid>
 
-          <Grid item xs={12} sm={8}>
-            <Autocomplete
-              options={CATEGORIES}
-              getOptionLabel={(option) => option.title}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Категория" />
-              )}
-            />
-          </Grid>
+        <Grid item xs={6} sm={3}>
+          <FormInput
+            label="Дата отбытия"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
+        </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <FormInput
-              label="Артикул"
-              name="password"
-              ref={register}
-              {...restForm}
-            />
-          </Grid>
+        <Grid item xs={6} sm={3}>
+          <FormInput
+            label="Время отбытия"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
+        </Grid>
 
-          <Grid item xs={12}>
-            <Autocomplete
-              multiple
-              options={AUTHORS}
-              getOptionLabel={(option) => option.title}
-              defaultValue={[AUTHORS[0]]}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Авторы" />
-              )}
-            />
-          </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormInput
+            label="Город прибытия"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
+        </Grid>
 
-          <Grid item xs={12}>
-            <FormInput
-              label="Описание"
-              name="password"
-              rows={4}
-              multiline
-              ref={register}
-              {...restForm}
-            />
-          </Grid>
+        <Grid item xs={6} sm={3}>
+          <FormInput
+            label="Дата прибытия"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
+        </Grid>
+
+        <Grid item xs={6} sm={3}>
+          <FormInput
+            label="Время прибытия"
+            name="password"
+            ref={register}
+            {...restForm}
+          />
         </Grid>
 
         <Grid
@@ -144,6 +148,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
     margin: 'auto',
+    maxWidth: '',
   },
   photo: {
     width: '250px',

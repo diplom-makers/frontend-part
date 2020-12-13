@@ -1,9 +1,10 @@
 import React from 'react'
 
-// import { Typography } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 
+import { PageTitle } from 'components'
 import { NewOfferForm } from 'components/forms'
 
 const propTypes = {}
@@ -13,9 +14,18 @@ function OfferFormPage() {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      <NewOfferForm />
-    </div>
+    <Container maxWidth="md" className={classes.container}>
+      <div className={classes.container}>
+        <PageTitle />
+        {/* <Typography
+          variant="h4"
+          style={{ margin: '5px', marginBottom: '10px' }}
+        >
+          Новый рейс
+        </Typography> */}
+        <NewOfferForm />
+      </div>
+    </Container>
   )
 }
 
@@ -25,5 +35,7 @@ export default OfferFormPage
 
 // styles
 const useStyles = makeStyles({
-  container: {},
+  container: {
+    margin: 0,
+  },
 })

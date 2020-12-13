@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container } from '@material-ui/core'
+import { Container, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { PageTitle } from 'components'
@@ -9,12 +9,12 @@ import { ProfileForm } from 'components/forms'
 const defaultProps = {}
 
 const profileData = {
-  email: 'maxim.romanov@mail.com',
+  email: 'egor.popugovich@mail.com',
   passportCode: '123456789 1234',
-  firstName: 'Максим',
-  lastName: 'Романов',
+  firstName: 'Егор',
+  lastName: 'Гордеев',
   passportDate: '12/12/2019',
-  address: 'г.Тверь ул.Пушкина д.Колотушкина 32A/2',
+  address: 'г.Тверь ул.Попугина д.Попуговича 32A/2',
 }
 
 function ProfilePage() {

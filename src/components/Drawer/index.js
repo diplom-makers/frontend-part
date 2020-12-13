@@ -58,7 +58,7 @@ const MAIN_LINKS = [
   },
   {
     key: 4,
-    title: 'Новый продукт',
+    title: 'Новый рейс',
     path: ADMIN_ROUTES.NEW_OFFER_PATH,
     authRequired: true,
     icon: AddBoxIcon,
