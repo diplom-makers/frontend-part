@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AndroidIcon from '@material-ui/icons/Android'
 import AppleIcon from '@material-ui/icons/Apple'
@@ -8,72 +9,86 @@ import SearchIcon from '@material-ui/icons/Search'
 import { map } from 'ramda'
 import { Link } from 'react-router-dom'
 
-import { CategoryBlock, OffersBlock, OfferBlock, OfferCard } from 'components'
+import {
+  CategoryBlock,
+  OffersBlock,
+  OfferBlock,
+  OfferCard,
+  TourBlock,
+} from 'components'
+import { FormInput, SubmitButton } from 'components/forms/adapters'
 import { OFFERS_PATH, OFFER_PATH } from 'constants/routes'
 import { addQeryParams, getPath } from 'utils/route'
 
 const defaultProps = {}
 
-const CATEGORIES = [
+const FLIGHTS = [
   {
-    icon: SearchIcon,
-    title: 'Детективы',
+    title: 'Российские курорты',
+    id: 4,
+  },
+  {
+    title: 'Египет',
     id: 1,
   },
   {
-    icon: AppleIcon,
-    title: 'IOS литература',
+    title: 'Зимбабве',
     id: 2,
   },
   {
-    icon: AndroidIcon,
-    title: 'Android литература',
+    title: 'Кипр',
     id: 3,
   },
   {
-    icon: BlurLinearIcon,
-    title: 'Фантастика',
-    id: 4,
+    title: 'Тайланд',
+    id: 3,
   },
 ]
 
 const OFFERS = [
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000001114512/COVER/cover1__w220.jpg',
-    price: 496,
-    name: 'Книга 1',
+    key: 0,
+    title: 'AMAR SINA',
+    raiting: 4,
+    price: 45000,
+    departDate: '20.02',
+    arrivalDate: '25.02',
+    description: '5 ночей | 2-x местный номер',
+    type: 'тур на зимние каникулы',
+    discount: 29,
+    arrivalPount: 'Египет, Хургада',
     discountPrecent: 12,
-    id: 1,
+    coverImg:
+      'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/dd/05/7d/steigenberger-al-dau.jpg?w=400&h=300&s=1',
   },
   {
-    price: 496,
+    key: 1,
+    title: 'AMARA SINSA LOKA',
+    raiting: 2,
+    price: 25500,
+    departDate: '21.02',
+    arrivalDate: '26.02',
+    description: '5 ночей | 3-x местный номер',
+    type: 'тур на зимнии каникулы',
+    discount: 29,
+    arrivalPount: 'Египет, Полта',
     discountPrecent: 12,
-    name: 'Книга 2',
-    id: 5,
+    coverImg: 'https://arttour.ru/images/country_logo/afrika/zimbabwe.jpg',
   },
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000879184/COVER/cover1__w220.jpg',
-    price: 496,
-    name: 'Книга 3',
-    id: 2,
-  },
-  {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000264284/COVER/cover1__w220.jpg',
-    price: 496,
+    key: 1,
+    title: 'POPUGI HIKO',
+    raiting: 3,
+    price: 21500,
+    departDate: '21.02',
+    arrivalDate: '26.02',
+    description: '5 ночей | 3-x местный номер',
+    type: 'тур на зимнии каникулы',
+    discount: 29,
+    arrivalPount: 'Египет, Вцев',
     discountPrecent: 12,
-    name: 'Книга 4',
-    id: 3,
-  },
-  {
     coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000817489/COVER/cover1__w220.jpg',
-    price: 496,
-    discountPrecent: 12,
-    name: 'Книга 5',
-    id: 4,
+      'https://static.tonkosti.ru/images/2/25/%D0%96%D0%B8%D1%82%D0%B5%D0%BB%D0%B8_%D0%97%D0%B8%D0%BC%D0%B1%D0%B0%D0%B1%D0%B2%D0%B5.jpg',
   },
 ]
 
@@ -90,47 +105,56 @@ function HomePage() {
     </Link>
   )
 
-  const renderOffer = (offer) => (
-    <Link
-      to={getPath(OFFER_PATH, { offerId: offer.id })}
-      className={classes.offerWrapper}
-      key={offer.id}
-    >
-      <OfferBlock {...offer} />
-    </Link>
-  )
-
   const renderOfferCard = (offer) => (
-    <Link
-      to={getPath(OFFER_PATH, { offerId: offer.id })}
-      className={classes.offerCardWrapper}
-      key={offer.id}
-    >
-      <OfferCard {...offer} />
-    </Link>
+    <div className={classes.tourContainer}>
+      <TourBlock {...offer} />
+    </div>
   )
 
   const renderCategories = map(renderCategory)
-  const renderOffers = map(renderOffer)
   const renderOfferCards = map(renderOfferCard)
 
   return (
     <div className={classes.container}>
       <div className={classes.blockWrapper}>
-        <OffersBlock title="Популярные категории">
-          {renderCategories(CATEGORIES)}
+        <OffersBlock title="Популярное">
+          {renderCategories(FLIGHTS)}
         </OffersBlock>
       </div>
 
       <div className={classes.blockWrapper}>
-        <OffersBlock title="Новинки">{renderOffers(OFFERS)}</OffersBlock>
+        <Grid container spacing={2} className={classes.filterContainer}>
+          <Grid item xs={12} sm={5}>
+            <FormInput label="Точка назначения" name="arrivalPoint" />
+          </Grid>
+
+          <Grid item xs={6} sm={3}>
+            <FormInput label="Дата" name="Date" />
+          </Grid>
+
+          <Grid item xs={6} sm={2}>
+            <FormInput
+              label="Кол-во персон"
+              name="personCount"
+              defaultValue="2 взрослых"
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={2}>
+            <Button
+              color="primary"
+              variant="contained"
+              style={{ width: '100%' }}
+            >
+              Найти
+            </Button>
+          </Grid>
+        </Grid>
       </div>
 
       <div className={classes.blockWrapper}>
-        <OffersBlock title="Товары">
-          <div className={classes.offersCardContaner}>
-            {renderOfferCards(OFFERS)}
-          </div>
+        <OffersBlock title="Все туры">
+          <div style={{ width: '100%' }}>{renderOfferCards(OFFERS)}</div>
         </OffersBlock>
       </div>
     </div>
@@ -142,6 +166,18 @@ export default HomePage
 
 // styles
 const useStyles = makeStyles((theme) => ({
+  filterContainer: {
+    paddingRight: theme.spacing(1.5),
+    paddingLeft: theme.spacing(1.5),
+    backgroundColor: theme.palette.grey[100],
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    width: '100%',
+    margin: 0,
+  },
   container: {},
   categoryWrapper: {
     paddingRight: theme.spacing(1.5),
@@ -163,14 +199,6 @@ const useStyles = makeStyles((theme) => ({
   offersCardContaner: {
     // paddingLeft: theme.spacing(3),
     // paddingRight: theme.spacing(3),
-    width: '100%',
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gridColumnGap: theme.spacing(2),
-
-    [theme.breakpoints.up('sm')]: {
-      gridTemplateColumns: '1fr 1fr',
-    },
   },
   title: {
     paddingLeft: theme.spacing(3),
@@ -179,5 +207,9 @@ const useStyles = makeStyles((theme) => ({
 
   blockWrapper: {
     marginBottom: theme.spacing(3),
+  },
+
+  tourContainer: {
+    marginBottom: theme.spacing(2),
   },
 }))

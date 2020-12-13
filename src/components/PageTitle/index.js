@@ -17,18 +17,20 @@ function Pagetitle({ children }) {
   const classes = useStyles()
 
   return (
-    <Hidden smUp implementation="css">
-      <div className={classes.container}>
-        <div className={classes.backActionContainer}>
-          <ArrowBackIcon className={classes.arrow} />
-          <Typography variant="button" display="block">
-            Назад
-          </Typography>
-        </div>
-        {/* {children && <Typography variant="h3">{children}</Typography>} */}
-        {children && children}
+    <div className={classes.container}>
+      <div>
+        <Hidden smUp implementation="css">
+          <div className={classes.backActionContainer}>
+            <ArrowBackIcon className={classes.arrow} />
+            <Typography variant="button" display="block">
+              Назад
+            </Typography>
+          </div>
+        </Hidden>
       </div>
-    </Hidden>
+      {/* {children && <Typography variant="h3">{children}</Typography>} */}
+      {children && children}
+    </div>
   )
 }
 

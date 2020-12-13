@@ -24,10 +24,10 @@ const rowSname = {
 }
 
 const rows = [
-  { name: 'Книга 1', total: '140', sold: '25', price: '435р.' },
-  { name: 'Книга 2', total: '320', sold: '95', price: '496р.' },
-  { name: 'Книга 3', total: '190', sold: '15', price: '496р.' },
-  { name: 'Книга 4', total: '1270', sold: '315', price: '396р.' },
+  { name: 'AMAR SINA', total: '140', sold: '25', price: '45000p.' },
+  { name: 'AMARA SINSA LOKA', total: '320', sold: '95', price: '25500p.' },
+  { name: 'AMAR SINA - new', total: '190', sold: '15', price: '21500р.' },
+  { name: 'POPUGI HIKO', total: '1270', sold: '315', price: '21500р.' },
 ]
 
 function StatisticTable(props) {

@@ -19,7 +19,7 @@ import {
   ExitToApp as ExitToAppIcon,
   Equalizer as EqualizerIcon,
   AddBox as AddBoxIcon,
-  ImportContacts as MenuBookIcon,
+  FlightTakeoff as FlightTakeoffIcon,
 } from '@material-ui/icons'
 import PropTypes from 'prop-types'
 import { identity, pipe, tap, map } from 'ramda'
@@ -122,8 +122,8 @@ function ResponsiveDrawer(props) {
         <div>
           <div className={classes.toolbar}>
             <div className={classes.logoContainer}>
-              <MenuBookIcon fontSize="large" />
-              <Typography variant="h5">STORYBOOK</Typography>
+              <FlightTakeoffIcon fontSize="large" />
+              <Typography variant="h5">КупиТур</Typography>
             </div>
           </div>
           <Divider />
@@ -168,5 +168,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     padding: '15px',
+    paddingRight: '50px',
   },
 }))

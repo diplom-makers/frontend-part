@@ -9,10 +9,10 @@ import { ProfileForm } from 'components/forms'
 const defaultProps = {}
 
 const profileData = {
-  email: 'maxim.romanov@mail.com',
+  email: 'alex.hitler@mail.com',
   passportCode: '123456789 1234',
-  firstName: 'Максим',
-  lastName: 'Романов',
+  firstName: 'Александра',
+  lastName: 'Шулова',
   passportDate: '12/12/2019',
   address: 'г.Тверь ул.Пушкина д.Колотушкина 32A/2',
 }

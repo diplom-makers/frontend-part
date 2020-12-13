@@ -65,7 +65,7 @@ function NewOfferForm() {
           </div>
         </Grid>
 
-        <Grid item container xs={8} spacing={2}>
+        <Grid item container xs={8} spacing={1}>
           <Grid item xs={12} sm={12}>
             <FormInput
               label="Название"
@@ -75,34 +75,39 @@ function NewOfferForm() {
             />
           </Grid>
 
-          <Grid item xs={12} sm={8}>
-            <Autocomplete
-              options={CATEGORIES}
-              getOptionLabel={(option) => option.title}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Категория" />
-              )}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={6} sm={5}>
             <FormInput
-              label="Артикул"
+              label="дата отбытия"
               name="password"
               ref={register}
               {...restForm}
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <Autocomplete
-              multiple
-              options={AUTHORS}
-              getOptionLabel={(option) => option.title}
-              defaultValue={[AUTHORS[0]]}
-              renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="Авторы" />
-              )}
+          <Grid item xs={6} sm={5}>
+            <FormInput
+              label="дата прибытия"
+              name="password"
+              ref={register}
+              {...restForm}
+            />
+          </Grid>
+
+          <Grid item xs={4} sm={2}>
+            <FormInput
+              label="Рейтинг"
+              name="password"
+              ref={register}
+              {...restForm}
+            />
+          </Grid>
+
+          <Grid item xs={8} sm={12}>
+            <FormInput
+              label="Место назначения"
+              name="password"
+              ref={register}
+              {...restForm}
             />
           </Grid>
 
