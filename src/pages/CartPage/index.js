@@ -3,10 +3,10 @@ import React from 'react'
 import { Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
-import { pipe, map, reduce, add } from 'ramda'
+import { length, pipe, map, reduce, add } from 'ramda'
 import { Link } from 'react-router-dom'
 
-import { OfferCartItem, PageTitle } from 'components'
+import { OfferCartItem, PageTitle, Ticket } from 'components'
 import { SubmitButton } from 'components/forms/adapters'
 import { OFFERS_PATH, OFFER_PATH } from 'constants/routes'
 import { getInOr } from 'utils/ramda'
@@ -15,30 +15,48 @@ import { addQeryParams, getPath } from 'utils/route'
 const propTypes = {}
 const defaultProps = {}
 
-const OFFERS = [
+const flights = [
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000001114512/COVER/cover1__w220.jpg',
-    price: 496,
-    count: 20,
-    name: 'Книга 1',
-    discountPrecent: 12,
-    id: 1,
+    key: 0,
+    departTime: '12:00',
+    arrivalTime: '13:20',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '25',
+    freePlaces: '12',
+    category: 'M2',
+    type: 'Заказной',
+    price: '353',
+    count: 1,
   },
   {
-    price: 496,
-    discountPrecent: 12,
-    name: 'Книга 2',
+    key: 1,
+    departTime: '13:50',
+    arrivalTime: '16:00',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '15',
+    freePlaces: '2',
+    category: 'M2',
+    type: 'Заказной',
+    price: '706',
     count: 2,
-    id: 5,
   },
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000879184/COVER/cover1__w220.jpg',
-    price: 496,
-    name: 'Книга 3',
-    count: 3,
-    id: 2,
+    key: 2,
+    departTime: '16:20',
+    arrivalTime: '17:40',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '19',
+    freePlaces: '6',
+    category: 'M2',
+    type: 'Заказной',
+    price: '353',
+    count: 1,
   },
 ]
 
@@ -47,32 +65,26 @@ const getTotal = pipe(map(getInOr(0, 'price')), reduce(add, 0))
 function CartPage(props) {
   const classes = useStyles()
 
-  const renderOfferCartItem = (offer) => (
-    <Link
-      to={getPath(OFFER_PATH, { offerId: offer.id })}
-      className={classes.offerCardWrapper}
-      key={offer.id}
-    >
-      <OfferCartItem {...offer} />
-    </Link>
+  const renderTicket = (ticket) => (
+    <div className={classes.ticketWrapper}>
+      <Ticket {...ticket} />
+    </div>
   )
 
-  const renderOfferCartItems = map(renderOfferCartItem)
+  const renderTickets = map(renderTicket)
 
   return (
     <div className={classes.container}>
       <PageTitle>
         <Button variant="contained" color="primary">
-          Сделать заказ
+          Оплатить {length(flights)} билета
         </Button>
       </PageTitle>
 
-      <div className={classes.offersCardContaner}>
-        {renderOfferCartItems(OFFERS)}
-      </div>
+      <div className={classes.blockWrapper}>{renderTickets(flights)}</div>
 
       <Typography variant="subtitle2" className={classes.totalText}>
-        Сумма корзины: {getTotal(OFFERS)}руб.
+        Сумма корзины: {getTotal(flights)} руб
       </Typography>
     </div>
   )
@@ -109,5 +121,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(2),
     color: 'currentcolor',
     textDecoration: 'none',
+  },
+  blockWrapper: {
+    marginBottom: theme.spacing(3),
+  },
+
+  ticketWrapper: {
+    marginBottom: theme.spacing(2),
   },
 }))

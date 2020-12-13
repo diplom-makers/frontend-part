@@ -6,6 +6,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import PropTypes from 'prop-types'
 
+import { isDefined, isNotDefined } from 'utils/ramda'
+
 const propTypes = {
   departTime: PropTypes.string.isRequired,
   arrivalTime: PropTypes.string.isRequired,
@@ -17,6 +19,7 @@ const propTypes = {
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 }
 const defaultProps = {}
 
@@ -31,6 +34,7 @@ function Ticket({
   arrivalPoint,
   type,
   price,
+  count,
 }) {
   const classes = useStyles()
 
@@ -67,14 +71,19 @@ function Ticket({
         <Typography variant="subtitle" className={classes.price}>
           {price} руб
         </Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          className={classes.button}
-        >
-          В корзину
-        </Button>
+        {isDefined(count) && (
+          <span style={{ marginRight: '5px' }}>{count} шт.</span>
+        )}
+        {isNotDefined(count) && (
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+          >
+            В корзину
+          </Button>
+        )}
       </div>
     </div>
   )
@@ -118,7 +127,15 @@ function Ticket({
         </div>
       </div>
 
-      <div className={classes.mobileTicketItem} style={{ marginTop: '5px' }}>
+      <div
+        className={classes.mobileTicketItem}
+        style={{
+          marginTop: '5px',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+        }}
+      >
         <div className={classes.mobileActions}>
           <Button
             variant="contained"
@@ -137,6 +154,10 @@ function Ticket({
             <AddShoppingCartIcon />
           </IconButton>
         </div>
+
+        {isDefined(count) && (
+          <span style={{ marginRight: '5px' }}>{count} шт.</span>
+        )}
       </div>
     </div>
   )
@@ -169,7 +190,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#f3f3f3',
 
     position: 'relative',
-    padding: '1em 2em',
+    padding: '1em',
   },
   mobileTicketItem: {
     display: 'flex',
