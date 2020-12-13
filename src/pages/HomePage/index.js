@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import AndroidIcon from '@material-ui/icons/Android'
 import AppleIcon from '@material-ui/icons/Apple'
@@ -8,7 +9,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import { map } from 'ramda'
 import { Link } from 'react-router-dom'
 
-import { CategoryBlock, OffersBlock, OfferBlock, OfferCard } from 'components'
+import { Ticket } from 'components'
+import { FormInput } from 'components/forms/adapters'
 import { OFFERS_PATH, OFFER_PATH } from 'constants/routes'
 import { addQeryParams, getPath } from 'utils/route'
 
@@ -37,102 +39,76 @@ const CATEGORIES = [
   },
 ]
 
-const OFFERS = [
+const flights = [
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000001114512/COVER/cover1__w220.jpg',
-    price: 496,
-    name: 'Книга 1',
-    discountPrecent: 12,
-    id: 1,
+    key: 0,
+    departTime: '12:00',
+    arrivalTime: '13:20',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '25',
+    freePlaces: '12',
+    category: 'M2',
+    type: 'Заказной',
+    price: '353',
   },
   {
-    price: 496,
-    discountPrecent: 12,
-    name: 'Книга 2',
-    id: 5,
+    key: 1,
+    departTime: '13:50',
+    arrivalTime: '16:00',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '15',
+    freePlaces: '2',
+    category: 'M2',
+    type: 'Заказной',
+    price: '353',
   },
   {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000879184/COVER/cover1__w220.jpg',
-    price: 496,
-    name: 'Книга 3',
-    id: 2,
-  },
-  {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000264284/COVER/cover1__w220.jpg',
-    price: 496,
-    discountPrecent: 12,
-    name: 'Книга 4',
-    id: 3,
-  },
-  {
-    coverImg:
-      'https://cdn.book24.ru/v2/ITD000000000817489/COVER/cover1__w220.jpg',
-    price: 496,
-    discountPrecent: 12,
-    name: 'Книга 5',
-    id: 4,
+    key: 2,
+    departTime: '16:20',
+    arrivalTime: '17:40',
+    date: '13 декабря',
+    departPoint: 'Ржев',
+    arrivalPoint: 'Тверь',
+    totalPlaces: '19',
+    freePlaces: '6',
+    category: 'M2',
+    type: 'Заказной',
+    price: '353',
   },
 ]
 
 function HomePage() {
   const classes = useStyles()
 
-  const renderCategory = (category) => (
-    <Link
-      to={addQeryParams(OFFERS_PATH, { category: category.id })}
-      className={classes.categoryWrapper}
-      key={category.id}
-    >
-      <CategoryBlock icon={category.icon}>{category.title}</CategoryBlock>
-    </Link>
+  const renderTicket = (ticket) => (
+    <div className={classes.ticketWrapper}>
+      <Ticket {...ticket} />
+    </div>
   )
 
-  const renderOffer = (offer) => (
-    <Link
-      to={getPath(OFFER_PATH, { offerId: offer.id })}
-      className={classes.offerWrapper}
-      key={offer.id}
-    >
-      <OfferBlock {...offer} />
-    </Link>
-  )
-
-  const renderOfferCard = (offer) => (
-    <Link
-      to={getPath(OFFER_PATH, { offerId: offer.id })}
-      className={classes.offerCardWrapper}
-      key={offer.id}
-    >
-      <OfferCard {...offer} />
-    </Link>
-  )
-
-  const renderCategories = map(renderCategory)
-  const renderOffers = map(renderOffer)
-  const renderOfferCards = map(renderOfferCard)
+  const renderTickets = map(renderTicket)
 
   return (
     <div className={classes.container}>
-      <div className={classes.blockWrapper}>
-        <OffersBlock title="Популярные категории">
-          {renderCategories(CATEGORIES)}
-        </OffersBlock>
-      </div>
+      <Grid container spacing={2} className={classes.filter}>
+        <Grid item xs={8} sm={3}>
+          <FormInput label="Дата" name="date" />
+        </Grid>
 
-      <div className={classes.blockWrapper}>
-        <OffersBlock title="Новинки">{renderOffers(OFFERS)}</OffersBlock>
-      </div>
+        <Grid item xs={4} sm={3}>
+          <FormInput label="Время" name="time" />
+        </Grid>
 
-      <div className={classes.blockWrapper}>
-        <OffersBlock title="Товары">
-          <div className={classes.offersCardContaner}>
-            {renderOfferCards(OFFERS)}
-          </div>
-        </OffersBlock>
-      </div>
+        <Grid item xs={12} sm={6}>
+          <FormInput label="Город назначения" name="arrival point" />
+        </Grid>
+      </Grid>
+
+      <div className={classes.blockWrapper}>{renderTickets(flights)}</div>
     </div>
   )
 }
@@ -142,7 +118,15 @@ export default HomePage
 
 // styles
 const useStyles = makeStyles((theme) => ({
-  container: {},
+  filter: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: theme.spacing(2),
+  },
+  container: {
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(2),
+  },
   categoryWrapper: {
     paddingRight: theme.spacing(1.5),
     color: 'currentcolor',
@@ -179,5 +163,9 @@ const useStyles = makeStyles((theme) => ({
 
   blockWrapper: {
     marginBottom: theme.spacing(3),
+  },
+
+  ticketWrapper: {
+    marginBottom: theme.spacing(2),
   },
 }))
